@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+body {
+  background-color: rgb(33, 33, 33);
+  color: white;
+  font-size: 2em;
+  font-family: 'Montserrat , sans-srfif';
+  font-weight: 300;
+}
+
+.wrapper {
+  width: 1280px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+header .logo {
+  font-weight: 600;
+  font-size: 1.5em;
+}
+
+header ul.nav {
+  list-style: none;
+  float: right;
+}
+
+header ul.nav li {
+  display: inline;
+  margin-left: 25px;
+  font-size: 0.5em;
+  cursor: pointer;
+  transition: opacity 500ms ease;
+}
+
+header ul.nav li:hover {
+  opacity: 0.5;
+}
+
+
+.presentation {
+  margin: 50px 0px;
+  background: url('./img/books_main.png') no-repeat;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  background-color: #bcbcbc;
+}
+
+
+
+/* Reset and base styles  */
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Links */
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Common */
+
+aside,
+nav,
+footer,
+header,
+section,
+main {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ul,
+ul li {
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Form */
+
+input,
+textarea,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: black;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button,
+input[type="submit"] {
+  display: inline-block;
+  box-shadow: none;
+  background-color: transparent;
+  background: none;
+  cursor: pointer;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+legend {
+  display: block;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px 15px 15px;
+  box-sizing: content-box;
+  overflow: hidden;
+}
+
+.book-card {
+  background-color: #8f6d6d;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.book-card p {
+  margin: 0;
+}
+
+.user-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.user-card {
+  background-color: #8f6d6d;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.user-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-card li {
+  margin-bottom: 8px;
+}
+
+.user-card button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+.user-card button:nth-child(3) {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  margin: 0px 0px 0px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+.button_control {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button_control button {
+  margin-top: 20px;
+}
+
+
+
+.user-card button:hover {
+  background-color: #c0392b;
+}
+
+.addUser_form {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ;
+}
+
+.addUser {
+  max-width: 30%;
+  /* margin: 0 auto; */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.addUser h2 {
+  margin-top: 2px 0px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  padding-right: 30px;
+
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 500ms ease;
+
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.books-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.search-box {
+  margin-bottom: 20px;
+}
+
+.search-box h1 {
+  margin-bottom: 20px;
+  font-size: 1em;
+}
+
+
+.search-box input {
+  width: 30%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-box input:focus {
+  border-color: #ffee00;
+  outline: none;
+}
