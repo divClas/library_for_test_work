@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import ClientPanel from './components/ClientPanel';
 import AdminPanel from "./components/AdminPanel";
 // 3 роли:
-//     Администратор:++-
+//     Администратор:+++
 //         Может добавлять, редактировать и удалять пользователей.++-
 //     Библиотекарь: ++++
 //         Может добавлять и удалять книги.  ++++
@@ -21,7 +21,7 @@ function App() {
       <BookCard />
       <AdminPanel />
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
 
   );
