@@ -7,21 +7,23 @@ import ClientPanel from './components/ClientPanel';
 import AdminPanel from "./components/AdminPanel";
 // 3 роли:
 //     Администратор:+++
-//         Может добавлять, редактировать и удалять пользователей.++-
+//         Может добавлять, редактировать и удалять пользователей.+++
 //     Библиотекарь: ++++
 //         Может добавлять и удалять книги.  ++++
 //     Клиент: ++++
 //         Может видеть список книг; ++++
 //         Искать по автору, жанру, издателю. ++++
-
+// useCallback
+// useEffect
+// useContext
 function App() {
   return (
     <div className="wrapper">
       <Navbar />
-      <BookCard />
-      <AdminPanel />
-
-      <Footer />
+      {/* <BookCard />
+      <AdminPanel /> */}
+      {/* <Footer /> */}
+  
     </div>
 
   );
