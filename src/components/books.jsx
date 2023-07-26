@@ -78,30 +78,32 @@ const BookCard = () => {
                 />
             </div>
             <div className="book-card11">
-                <h1>Книги</h1>
-                <div className="books-list">
-                    {filteredBooks.map((book) => (
-                        <div key={book.id} className="book-card">
-                            <ul>
-                                <li>
-                                    <strong>название:</strong> {book.title}
-                                </li>
-                                <li>
-                                    <strong>автор:</strong> {book.author}
-                                </li>
-                                <li>
-                                    <strong>Жанр:</strong> {book.genre}
-                                </li>
-                                <li>
-                                    <strong>Издатель:</strong> {book.publisher}
-                                </li>
-                            </ul>
-                            <div className='button_control'>
-                                <button onClick={() => deleteBook(book.id)}>Удалить</button>
+                <div className="booooks">
+                    <h1>Книги</h1>
+                    <div className="books-list">
+                        {filteredBooks.map((book) => (
+                            <div key={book.id} className="book-card">
+                                <ul>
+                                    <li>
+                                        <strong>название:</strong> {book.title}
+                                    </li>
+                                    <li>
+                                        <strong>автор:</strong> {book.author}
+                                    </li>
+                                    <li>
+                                        <strong>Жанр:</strong> {book.genre}
+                                    </li>
+                                    <li>
+                                        <strong>Издатель:</strong> {book.publisher}
+                                    </li>
+                                </ul>
+                                <div className='button_control'>
+                                    <button onClick={() => deleteBook(book.id)}>Удалить</button>
+                                </div>
                             </div>
-                        </div>
 
-                    ))}
+                        ))}
+                    </div>
                 </div>
                 <div className='addUser_form conatainer'>
                     <div class="addUser">

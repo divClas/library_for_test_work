@@ -1,10 +1,11 @@
-import React, { useState,useCallback} from 'react';
+import React, { useState } from 'react';
+import LoginForm from './LoginForm';
 
 const AdminPanel = () => {
     // console.log("Render!")
     const [users, setUsers] = useState([
         { id: 1, login: 'Пользователь', paswword: "User228", role: 'user' },
-        { id: 2, login: 'Админ', paswword: "User228", role: 'admin' },
+        { id: 2, login: 'admin', paswword: "admin", role: 'admin' },
         { id: 3, login: 'Библиотека', paswword: "User228", role: 'librarian' },
     ]);
 
@@ -15,6 +16,11 @@ const AdminPanel = () => {
     const [editMode, setEditMode] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
 
+    const [loggedInUser, setLoggedInUser] = useState(null);
+
+    const handleLogin = (user) => {
+        setLoggedInUser(user);
+    };
 
     const addUser = () => {
         const newUser = { id: users.length + 1, login: newUserName, paswword: newUserPassword, role: newUserRole };
@@ -47,20 +53,28 @@ const AdminPanel = () => {
     const handleInputChangeRole = (event) => {
         setNewUserRole(event.target.value);
     };
-    
-    const handleSubmitEdit=(event,id)=>{
+
+    const handleSubmitEdit = (event, id) => {
         event.preventDefault()
         const updatedUsers = users.map((user) =>
-        user.id === currentUser.id
-            ? { ...user, login: event.target[0].value, paswword: event.target[1].value, role: event.target[2].value }
-            : user
+            user.id === currentUser.id
+                ? { ...user, login: event.target[0].value, paswword: event.target[1].value, role: event.target[2].value }
+                : user
         );
         setUsers(updatedUsers);
         setEditMode(false);
         setCurrentUser(null);
 
     }
-    
+    if (!loggedInUser) {
+        return (
+            <div>
+                <h1>Форма авторизации</h1>
+                <LoginForm users={users} handleLogin={handleLogin} />
+            </div>
+        );
+    }
+
     return (
         <div>
             <h1>Администратор</h1>
@@ -69,11 +83,11 @@ const AdminPanel = () => {
                 {users.map((user) => (
                     <div key={user.id} className="user-card">
                         {editMode && currentUser?.id === user.id ? (
-                            <form onSubmit={(event)=>handleSubmitEdit(event,user.id)}>
+                            <form onSubmit={(event) => handleSubmitEdit(event, user.id)}>
                                 <div>
                                     <label>Имя пользователя:</label>
                                     {/*  onChange={(e) => setEditedUserName(e.target.value)} */}
-                                    <input type="text" name='name' defaultValue={user.login}/>
+                                    <input type="text" name='name' defaultValue={user.login} />
                                 </div>
                                 <div>
                                     <label>Пароль пользователя:</label>
@@ -95,7 +109,7 @@ const AdminPanel = () => {
                         ) : (
                             <>
                                 <ul>
-                                   
+
                                     <li>
                                         <strong>Логин:</strong> {user.login}
                                     </li>
@@ -145,4 +159,4 @@ const AdminPanel = () => {
     );
 };
 
-export default AdminPanel; //react.UseCallBack
+export default AdminPanel; 
