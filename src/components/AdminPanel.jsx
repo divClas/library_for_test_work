@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useCallback} from 'react';
 
 const AdminPanel = () => {
+    // console.log("Render!")
     const [users, setUsers] = useState([
         { id: 1, login: 'Пользователь', paswword: "User228", role: 'user' },
         { id: 2, login: 'Админ', paswword: "User228", role: 'admin' },
@@ -13,9 +14,7 @@ const AdminPanel = () => {
 
     const [editMode, setEditMode] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
-    const [editedUserName, setEditedUserName] = useState('');
-    const [editedUserPassword, setEditedUserPassword] = useState('');
-    const [editedUserRole, setEditedUserRole] = useState('');
+
 
     const addUser = () => {
         const newUser = { id: users.length + 1, login: newUserName, paswword: newUserPassword, role: newUserRole };
@@ -33,24 +32,9 @@ const AdminPanel = () => {
     const editUser = (user) => {
         setEditMode(true);
         setCurrentUser(user);
-        setEditedUserName(user.login);
-        setEditedUserPassword(user.paswword);
-        setEditedUserRole(user.role);
     };
 
-    const saveUserChanges = () => {
-        const updatedUsers = users.map((user) =>
-            user.id === currentUser.id
-                ? { ...user, login: editedUserName, paswword: editedUserPassword, role: editedUserRole }
-                : user
-        );
-        setUsers(updatedUsers);
-        setEditMode(false);
-        setCurrentUser(null);
-        setEditedUserName('');
-        setEditedUserPassword('');
-        setEditedUserRole('');
-    };
+
 
     const handleInputChange = (event) => {
         setNewUserName(event.target.value);
@@ -63,7 +47,20 @@ const AdminPanel = () => {
     const handleInputChangeRole = (event) => {
         setNewUserRole(event.target.value);
     };
+    
+    const handleSubmitEdit=(event,id)=>{
+        event.preventDefault()
+        const updatedUsers = users.map((user) =>
+        user.id === currentUser.id
+            ? { ...user, login: event.target[0].value, paswword: event.target[1].value, role: event.target[2].value }
+            : user
+        );
+        setUsers(updatedUsers);
+        setEditMode(false);
+        setCurrentUser(null);
 
+    }
+    
     return (
         <div>
             <h1>Администратор</h1>
@@ -72,29 +69,33 @@ const AdminPanel = () => {
                 {users.map((user) => (
                     <div key={user.id} className="user-card">
                         {editMode && currentUser?.id === user.id ? (
-                            <>
+                            <form onSubmit={(event)=>handleSubmitEdit(event,user.id)}>
                                 <div>
                                     <label>Имя пользователя:</label>
-                                    <input type="text" value={editedUserName} onChange={(e) => setEditedUserName(e.target.value)} />
+                                    {/*  onChange={(e) => setEditedUserName(e.target.value)} */}
+                                    <input type="text" name='name' defaultValue={user.login}/>
                                 </div>
                                 <div>
                                     <label>Пароль пользователя:</label>
-                                    <input type="password" value={editedUserPassword} onChange={(e) => setEditedUserPassword(e.target.value)} />
+                                    {/*  onChange={(e) => setEditedUserPassword(e.target.value)} */}
+                                    <input type="password" name='password' defaultValue={user.paswword} />
                                 </div>
                                 <div>
                                     <label>Роль пользователя:</label>
-                                    <select value={editedUserRole} onChange={(e) => setEditedUserRole(e.target.value)}>
+                                    {/*  onChange={(e) => setEditedUserRole(e.target.value)} */}
+                                    <select name='role' defaultValue={user.role}>
                                         <option value="user">пользователь</option>
                                         <option value="admin">администратор</option>
                                         <option value="librarian">библиотекарь</option>
                                     </select>
                                 </div>
-                                <button onClick={saveUserChanges}>Сохранить</button>
-                            </>
+                                <button type='submit' >Сохранить</button>
+                                {/* onClick={saveUserChanges} */}
+                            </form>
                         ) : (
                             <>
                                 <ul>
-
+                                   
                                     <li>
                                         <strong>Логин:</strong> {user.login}
                                     </li>
