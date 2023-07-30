@@ -5,6 +5,9 @@ import BookCard from './components/books';
 import Footer from './components/Footer';
 import ClientPanel from './components/ClientPanel';
 import AdminPanel from "./components/AdminPanel";
+import { Provider } from 'react-redux'
+import store from './store'
+
 // 3 роли:
 //     Администратор:+++
 //         Может добавлять, редактировать и удалять пользователей.+++
@@ -18,13 +21,14 @@ import AdminPanel from "./components/AdminPanel";
 // useContext
 function App() {
   return (
-    <div className="wrapper">
-      <Navbar />
-      {/* <BookCard />
+    <Provider store={store}>
+      <div className="wrapper">
+        <Navbar />
+        {/* <BookCard />
       <AdminPanel /> */}
-      {/* <Footer /> */}
-  
-    </div>
+        {/* <Footer /> */}
+      </div>
+    </Provider>
 
   );
 }

@@ -1,40 +1,40 @@
 import './../App.css';
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 const BookCard = () => {
-    const [books, setBoks] = useState([
-        { id: 1, title: '«Властелин колец»', author: 'Джон Р. Р. Толкин', genre: 'фантастика', publisher: 'КИНО' },
-        { id: 2, title: '«Гордость и предубеждение»', author: 'Джейн Остин', genre: 'экшен', publisher: 'КИНО' },
-        { id: 3, title: '«Тёмные начала»', author: 'Филип Пулман', genre: 'коммедия', publisher: 'кот' },
-        { id: 4, title: '«Автостопом по галактике»', author: '	Дуглас Адамс', genre: 'фантастика', publisher: 'алея' },
-        { id: 5, title: '«Гарри Поттер и Кубок огня»', author: 'Джоан Роулинг', genre: 'фантастика', publisher: 'Теплый' },
-        { id: 6, title: '«Убить пересмешника»', author: 'Харпер Ли', genre: 'детектив', publisher: 'Солнце' },
-        { id: 7, title: '«Винни Пух»', author: 'Алан Александр Милн', genre: 'повесть', publisher: 'алея' },
-        { id: 8, title: '«Война и мир»', author: 'Лев Толстой', genre: 'роман-эпопея', publisher: 'кот' },
-    ]);
+    const books = useSelector((state) => state.books);
+    console.log(books);
+    const dispatch = useDispatch();
     const [newBookTitle, setnewBookTitle] = useState('');
     const [newBookAuthor, setnewBookAuthor] = useState('');
     const [newBookGenre, setNewBookGenre] = useState('');
     const [newBookPublisher, setBookPublisher] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
 
-    const addBoock = () => {
+    const addBook = () => {
         const newBook = {
-            id: books.length + 1, title: newBookTitle, author: newBookAuthor,
-            genre: newBookGenre, publisher: newBookPublisher
+            id: books.length + 1,
+            title: newBookTitle,
+            author: newBookAuthor,
+            genre: newBookGenre,
+            publisher: newBookPublisher,
         };
-        setBoks([...books, newBook]);
+        dispatch({
+            type: "ADD_BOOK",
+            payload: newBook,
+        });
         setnewBookTitle('');
         setnewBookAuthor('');
         setNewBookGenre('');
         setBookPublisher('');
-
     };
-    //удаление книги 
     const deleteBook = (bookId) => {
-        const updatedBooks = books.filter((book) => book.id !== bookId);
-        setBoks(updatedBooks);
-    };
+        dispatch({
+            type: "DELETE_BOOK",
+            payload: bookId,
+        });
+    }
     // добавление книг
     const handleInputChangeTitle = (event) => {
         setnewBookTitle(event.target.value);
@@ -56,13 +56,16 @@ const BookCard = () => {
     // поиск книг
     const filteredBooks = books.filter((book) => {
         const query = searchQuery.toLowerCase();
+
         return (
+
             book.title.toLowerCase().includes(query) ||
             book.author.toLowerCase().includes(query) ||
             book.genre.toLowerCase().includes(query) ||
             book.publisher.toLowerCase().includes(query)
         );
     });
+
     return (
         <div className='Book_for_libbrarian'>
             <div className="search-box">
@@ -125,7 +128,7 @@ const BookCard = () => {
                                 <label for="newUserRole">Издатель Книги:</label>
                                 <input type="text" id="newUserPassword" value={newBookPublisher} onChange={handleInputChangePublisher} placeholder="Издатель Книги" required />
                             </div>
-                            <button type="button" onClick={addBoock}>Добавить</button>
+                            <button type="button" onClick={addBook}>Добавить</button>
 
                         </form>
                     </div>
