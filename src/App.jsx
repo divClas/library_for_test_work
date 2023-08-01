@@ -2,9 +2,9 @@ import React from "react";
 import './App.css';
 import Navbar from './components/Navbar';
 import BookCard from './components/books';
-import Footer from './components/Footer';
 import ClientPanel from './components/ClientPanel';
 import AdminPanel from "./components/AdminPanel";
+
 import { Provider } from 'react-redux'
 import store from './store'
 
@@ -24,9 +24,6 @@ function App() {
     <Provider store={store}>
       <div className="wrapper">
         <Navbar />
-        {/* <BookCard />
-      <AdminPanel /> */}
-        {/* <Footer /> */}
       </div>
     </Provider>
 

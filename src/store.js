@@ -14,17 +14,10 @@ const initialState = {
     users: [
         { id: 1, login: 'Пользователь', paswword: "User228", role: 'user' },
         { id: 2, login: 'admin', paswword: "admin", role: 'admin' },
-        { id: 3, login: 'Библиотека', paswword: "User228", role: 'librarian' },
+        { id: 3, login: 'library', paswword: "library", role: 'librarian' },
     ],
+
 }
-const usersInitialState = {
-
-};
-
-const booksInitialState = {
-
-};
-
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_USER':
@@ -42,10 +35,23 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(user => user.id === action.payload.id ? action.payload.updatedUser : user),
             };
+
         case 'ADD_BOOK':
             return {
                 ...state,
                 books: [...state.books, action.payload],
+            };
+        case 'SET_CURRENT_USER':
+            return {
+                ...state,
+                currentUser: action.payload,
+                isLoggedIn: true,
+            };
+        case 'LOGOUT_USER':
+            return {
+                ...state,
+                currentUser: null,
+                isLoggedIn: false,
             };
         case 'DELETE_BOOK':
             return {
@@ -56,30 +62,6 @@ const rootReducer = (state = initialState, action) => {
             return state;
     }
 };
-
-// const booksReducer = (state = initialState, action) => {
-//     switch (action.type) {
-//         case 'ADD_BOOK':
-//             return {
-//                 ...state,
-//                 books: [...state.books, action.payload],
-//             };
-//         case 'DELETE_BOOK':
-//             return {
-//                 ...state,
-//                 books: state.books.filter((book) => book.id !== action.payload),
-//             };
-//         default:
-//             return state;
-//     }
-// };
-
-// const rootReducer = combineReducers({
-//     users: usersReducer,
-//     books: booksReducer,
-// });
-
-
 const store = createStore(rootReducer);
 console.log(store.getState());
 export default store;
