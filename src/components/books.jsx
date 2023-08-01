@@ -83,8 +83,7 @@ const BookCard = ({ }) => {
         <div className='Book_for_libbrarian'>
             {!isLoggedIn ? (
                 <div>
-                    <h1>Администратор</h1>
-                    <h2>Форма авторизации:</h2>
+
                     <LoginForm users={users} />
                 </div>
             ) : (

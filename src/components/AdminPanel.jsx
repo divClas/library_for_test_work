@@ -5,9 +5,7 @@ import LoginForm from './LoginForm';
 const AdminPanel = () => {
     const users = useSelector(state => state.users);
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
-
     const dispatch = useDispatch();
-
     const [newUserName, setNewUserName] = useState('');
     const [newUserPassword, setNewUserPassword] = useState('');
     const [newUserRole, setNewUserRole] = useState('');
@@ -48,13 +46,20 @@ const AdminPanel = () => {
         setEditMode(false);
         setCurrentUser(null);
     }
+    const logoutUser = () => {
+        return {
+            type: 'LOGOUT_USER',
+        };
+    };
+    const handleLogout = () => {
+        dispatch(logoutUser());
+    };
 
     return (
         <div className='admin_panel'>
             {!isLoggedIn ? (
                 <div>
-                    <h1>Администратор</h1>
-                    <h2>Форма авторизации:</h2>
+
                     <LoginForm users={users} />
                 </div>
             ) : (
@@ -130,6 +135,7 @@ const AdminPanel = () => {
                             </form>
                         </div>
                     </div>
+                    <button onClick={handleLogout}>Выйти</button>
                 </div>
             )}
 
