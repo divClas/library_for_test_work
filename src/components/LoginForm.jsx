@@ -12,7 +12,6 @@ const LoginForm = () => {
         event.preventDefault();
 
         const user = users.find((u) => u.login === login && u.paswword === password);
-        console.log(users);
         if (user) {
             if (user.login === 'admin' && user.paswword === 'admin' || user.login === 'library' && user.paswword === 'library' ) {
                 dispatch({
@@ -37,7 +36,7 @@ const LoginForm = () => {
                 <label htmlFor="password">Пароль:</label>
                 <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <button type="submit">{console.log()}Войти</button>
+            <button type="submit">Войти</button>
         </form>
     );
 };

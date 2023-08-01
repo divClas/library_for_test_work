@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const ClientPanel = () => {
     const books = useSelector((state) => state.books);
-    console.log(books);
     const dispatch = useDispatch();
     const [newBookTitle, setnewBookTitle] = useState('');
     const [newBookAuthor, setnewBookAuthor] = useState('');

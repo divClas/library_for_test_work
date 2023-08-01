@@ -8,17 +8,6 @@ import AdminPanel from "./components/AdminPanel";
 import { Provider } from 'react-redux'
 import store from './store'
 
-// 3 роли:
-//     Администратор:+++
-//         Может добавлять, редактировать и удалять пользователей.+++
-//     Библиотекарь: ++++
-//         Может добавлять и удалять книги.  ++++
-//     Клиент: ++++
-//         Может видеть список книг; ++++
-//         Искать по автору, жанру, издателю. ++++
-// useCallback
-// useEffect
-// useContext
 function App() {
   return (
     <Provider store={store}>

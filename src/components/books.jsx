@@ -5,7 +5,6 @@ import LoginForm from './LoginForm';
 
 const BookCard = ({ }) => {
     const books = useSelector((state) => state.books);
-    console.log(books);
     const users = useSelector((state) => state.users);
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
     const dispatch = useDispatch();

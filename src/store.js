@@ -63,5 +63,4 @@ const rootReducer = (state = initialState, action) => {
     }
 };
 const store = createStore(rootReducer);
-console.log(store.getState());
 export default store;
