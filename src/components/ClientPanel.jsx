@@ -1,20 +1,18 @@
-import './../App.css';
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const ClientPanel = () => {
     const books = useSelector((state) => state.books);
-    const dispatch = useDispatch();
     const [searchQuery, setSearchQuery] = useState('');
+
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
     };
-    // добавление книг
+
     const filteredBooks = books.filter((book) => {
         const query = searchQuery.toLowerCase();
 
         return (
-
             book.title.toLowerCase().includes(query) ||
             book.author.toLowerCase().includes(query) ||
             book.genre.toLowerCase().includes(query) ||
@@ -26,7 +24,6 @@ const ClientPanel = () => {
         <div className='Book_for_libbrarian'>
             <div className="search-box">
                 <label>
-
                     <h1>Поиск книг</h1>
                 </label>
                 <input
@@ -57,14 +54,11 @@ const ClientPanel = () => {
                                     </li>
                                 </ul>
                             </div>
-
                         ))}
                     </div>
                 </div>
-
             </div>
         </div>
-
     );
 };
 

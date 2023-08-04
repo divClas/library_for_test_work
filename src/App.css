@@ -389,3 +389,6 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+.edituser input{
+  width: 80%;
+}
